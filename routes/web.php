@@ -18,3 +18,13 @@ Route::get('/', function () {
 });
 
 Route::get('/books', 'App\Http\Controllers\BookController@index');
+
+Route::get('/books/create', 'App\Http\Controllers\BookController@create');
+
+Route::get('/books/edit/{id}', 'App\Http\Controllers\BookController@edit');
+
+Route::get('/books/destroy/{id}', 'App\Http\Controllers\BookController@destroy');
+
+Route::get('/books/{id}', 'App\Http\Controllers\BookController@show');
+
+

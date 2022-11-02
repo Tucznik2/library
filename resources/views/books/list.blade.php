@@ -14,6 +14,9 @@
                <td>{{$book->publication_place}}</td>
                <td>{{$book->pages}}</td>
                <td>{{$book->price}}</td>
+               <td><a href="{{url('/books', [$book->id])}}">Podgląd</a></td>
+               <td><a href="{{url('/books/edit', [$book->id])}}">Edycja</a></td>
+               <td><a href="{{url('/books/destroy', [$book->id])}}">Usuń</a></td>
            </tr>
            @empty
                 Brak rekordów!
