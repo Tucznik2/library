@@ -28,6 +28,32 @@
                     <th>Cena</th>
                     <td>{{$book->price}}</td>
                 </tr>
+                @isset($book->isbn)
+                    <tr>
+                        <th>Numer ISBN</th>
+                        <td>{{$book->isbn->numer}}</td>
+                    </tr>
+                    <tr>
+                        <th>Numer wydany przez</th>
+                        <td>{{$book->isbn->issued_by}}</td>
+                    </tr>
+                    <tr>
+                        <th>Data wydania numeru ISBN</th>
+                        <td>{{$book->isbn->issued_on}}</td>
+                    </tr>
+                @endisset
+                @isset($book->authors)
+                    <tr>
+                        <th>Autorzy</th>
+                        <td>
+                            <ul>
+                                @foreach($book->authors as $author)
+                                    <li>{{$author->lastname}} {{$author->firstname}}</li>
+                                @endforeach
+                            </ul>
+                        </td>
+                    </tr>
+                @endisset
             @endisset
         </table>
     </div>

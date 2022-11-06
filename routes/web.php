@@ -27,4 +27,10 @@ Route::get('/books/destroy/{id}', 'App\Http\Controllers\BookController@destroy')
 
 Route::get('/books/{id}', 'App\Http\Controllers\BookController@show');
 
+Route::get('/loans', 'App\Http\Controllers\LoanController@index');
 
+Route::get('/loans/create', 'App\Http\Controllers\LoanController@create');
+
+Route::get('/authors', 'App\Http\Controllers\AuthorController@index');
+
+Route::get('/authors/create', 'App\Http\Controllers\AuthorController@create');
