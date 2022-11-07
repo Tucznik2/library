@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\LoanController;
+use App\Http\Controllers\AuthorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,26 +20,28 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/books', 'App\Http\Controllers\BookController@index');
+Route::get('/books', [BookController::class, 'index']);
 
-Route::get('/books/create', 'App\Http\Controllers\BookController@create');
+Route::get('/books/create', [BookController::class, 'store']);
 
-Route::get('/books/edit/{id}', 'App\Http\Controllers\BookController@edit');
+Route::post('/books',  [BookController::class, 'store']);
 
-Route::get('/books/destroy/{id}', 'App\Http\Controllers\BookController@destroy');
+Route::get('/books/edit/{id}', [BookController::class, 'edit']);
 
-Route::get('/books/cheapest', 'App\Http\Controllers\BookController@cheapest');
+Route::get('/books/destroy/{id}', [BookController::class, 'destroy']);
 
-Route::get('/books/longest', 'App\Http\Controllers\BookController@longest');
+Route::get('/books/cheapest', [BookController::class, 'cheapest']);
 
-Route::get('/books/search', 'App\Http\Controllers\BookController@search');
+Route::get('/books/longest', [BookController::class, 'longest']);
 
-Route::get('/books/{id}', 'App\Http\Controllers\BookController@show');
+Route::get('/books/search', [BookController::class, 'search']);
 
-Route::get('/loans', 'App\Http\Controllers\LoanController@index');
+Route::get('/books/{id}', [BookController::class, 'show']);
 
-Route::get('/loans/create', 'App\Http\Controllers\LoanController@create');
+Route::get('/loans', [LoanController::class, 'index']);
 
-Route::get('/authors', 'App\Http\Controllers\AuthorController@index');
+Route::get('/loans/create', [LoanController::class, 'create']);
 
-Route::get('/authors/create', 'App\Http\Controllers\AuthorController@create');
+Route::get('/authors', [AuthorController::class, 'index']);
+
+Route::get('/authors/create', [AuthorController::class, 'store']);

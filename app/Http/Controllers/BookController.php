@@ -26,21 +26,9 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(BookRepository $bookRepo)
+    public function create()
     {
-        $data = [
-            'name' => 'Czarny Dom',
-            'year' => 2010,
-            'publication_place' => 'Warszawa',
-            'pages' => 648,
-            'price' => 59.99
-        ];
-
-        $booksList = $bookRepo->create($data);
-
-        $isbn = new Isbn(['number' => 9788376483764, 'issued_by' => 'Wydawca', 'issued_on' => '2010-04-20']);
-        $booksList->isbn()->save($isbn);
-        return redirect('books');
+        return view('/books/create');
     }
 
     /**
@@ -49,9 +37,11 @@ class BookController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, BookRepository $bookRepo)
     {
-        //
+        $data = $request->all();
+        dd($request->all());
+        return redirect('books');
     }
 
     /**

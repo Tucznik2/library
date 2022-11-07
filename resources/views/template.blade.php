@@ -31,6 +31,12 @@
                     <li class="nav-item" aria-current="page" >
                         <a class="nav-link" href="{{URL::to('authors')}}">Autorzy</a>
                     </li>
+                    <li class="nav-item" aria-current="page" >
+                        <a class="nav-link" href="{{URL::to('books/create')}}">Dodaj książke</a>
+                    </li>
+                    <li class="nav-item" aria-current="page" >
+                        <a class="nav-link" href="{{URL::to('authors/create')}}">Dodaj autora</a>
+                    </li>
                 </ul>
             </div>
         </div>
