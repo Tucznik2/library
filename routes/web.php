@@ -25,6 +25,12 @@ Route::get('/books/edit/{id}', 'App\Http\Controllers\BookController@edit');
 
 Route::get('/books/destroy/{id}', 'App\Http\Controllers\BookController@destroy');
 
+Route::get('/books/cheapest', 'App\Http\Controllers\BookController@cheapest');
+
+Route::get('/books/longest', 'App\Http\Controllers\BookController@longest');
+
+Route::get('/books/search', 'App\Http\Controllers\BookController@search');
+
 Route::get('/books/{id}', 'App\Http\Controllers\BookController@show');
 
 Route::get('/loans', 'App\Http\Controllers\LoanController@index');
