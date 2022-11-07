@@ -31,7 +31,7 @@
                 @isset($book->isbn)
                     <tr>
                         <th>Numer ISBN</th>
-                        <td>{{$book->isbn->numer}}</td>
+                        <td>{{$book->isbn->number}}</td>
                     </tr>
                     <tr>
                         <th>Numer wydany przez</th>
