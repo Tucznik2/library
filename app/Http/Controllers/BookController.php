@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Book;
 use App\Models\Isbn;
 use App\Repositories\BookRepository;
@@ -28,7 +29,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('/books/create');
+        $authors = Author::all();
+        return view('books/create', ['authors' => $authors]);
     }
 
     /**
@@ -40,7 +42,7 @@ class BookController extends Controller
     public function store(Request $request, BookRepository $bookRepo)
     {
         $data = $request->all();
-        dd($request->all());
+        $bookRepo->create($data);
         return redirect('books');
     }
 

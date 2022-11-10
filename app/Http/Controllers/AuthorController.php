@@ -41,7 +41,6 @@ class AuthorController extends Controller
         $author = new Author();
         $author->fill($data);
         $author->save();
-
         return redirect('authors');
     }
 

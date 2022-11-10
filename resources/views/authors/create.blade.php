@@ -6,7 +6,7 @@
 @section('content')
     <div class="container">
         <h2>Dodawanie autorów</h2>
-        <form action="{{action('AuthorController@store')}}" method="POST" role="form">
+        <form action="/authors" method="POST" role="form">
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
             <div class="form-group">
                 <label for="lastname">Nazwisko</label>

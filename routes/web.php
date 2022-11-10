@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 Route::get('/books', [BookController::class, 'index']);
 
-Route::get('/books/create', [BookController::class, 'store']);
+Route::get('/books/create', [BookController::class, 'create']);
 
 Route::post('/books',  [BookController::class, 'store']);
 
@@ -42,6 +42,10 @@ Route::get('/loans', [LoanController::class, 'index']);
 
 Route::get('/loans/create', [LoanController::class, 'create']);
 
+Route::post('/loans', [LoanController::class, 'store']);
+
 Route::get('/authors', [AuthorController::class, 'index']);
 
-Route::get('/authors/create', [AuthorController::class, 'store']);
+Route::get('/authors/create', [AuthorController::class, 'create']);
+
+Route::post('/authors',  [AuthorController::class, 'store']);
