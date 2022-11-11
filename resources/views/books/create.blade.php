@@ -6,7 +6,7 @@
 @section('content')
     <div class="container">
         <h2>Dodawanie książek</h2>
-        <form action="/books" method="POST" role="form">
+        <form action="{{route('books.store')}}" method="POST" role="form">
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
             <div class="form-group mb-2">
                 <label for="name">Tytuł książki</label>

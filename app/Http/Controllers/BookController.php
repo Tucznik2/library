@@ -66,16 +66,10 @@ class BookController extends Controller
      */
     public function edit(BookRepository $bookRepo, $id)
     {
-        $data = [
-            'name' => 'Quo Vadis',
-            'year' => 2001,
-            'publication_place' => 'Warszawa',
-            'pages' => 650,
-            'price' => 59.99
-        ];
+        $book = $bookRepo->find($id);
+        $authors = Author::all();
 
-        $bookRepo->update($data, $id);
-        return redirect('books');
+        return view('books/edit', ['book' => $book, 'authors' => $authors]);
     }
 
     /**
@@ -85,10 +79,13 @@ class BookController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, BookRepository $bookRepo, int $id)
     {
-        //
+        $data = $request->all();
+        $bookRepo->update($data, $id);
+        return redirect('books');
     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -100,19 +97,23 @@ class BookController extends Controller
         $bookRepo->delete($id);
         return redirect('books');
     }
-    public function cheapest(Book $book){
+
+    public function cheapest(Book $book)
+    {
         $booksList = DB::table('books')->orderBy('price', 'asc')->limit(3)->get();
-        return view('books/list',['booksList' => $booksList]);
+        return view('books/list', ['booksList' => $booksList]);
     }
 
-    public function longest(Book $book){
+    public function longest(Book $book)
+    {
         $booksList = DB::table('books')->orderBy('pages', 'desc')->limit(3)->get();
-        return view('books/list',['booksList' => $booksList]);
+        return view('books/list', ['booksList' => $booksList]);
     }
 
-    public function search(Request $request, Book $book){
-        $q = $request->input('q',"");
-        $booksList = DB::table('books')->where('name', 'like', '%'.$q.'%')->get();
-        return view('books/list',['booksList' => $booksList]);
+    public function search(Request $request, Book $book)
+    {
+        $q = $request->input('q', "");
+        $booksList = DB::table('books')->where('name', 'like', '%' . $q . '%')->get();
+        return view('books/list', ['booksList' => $booksList]);
     }
 }
