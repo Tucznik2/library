@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\BookCreated;
 use App\Http\Requests\StoreBook;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Isbn;
 use App\Repositories\BookRepository;
+use App\Services\OpenLibrary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
@@ -46,7 +48,8 @@ class BookController extends Controller
     public function store(StoreBook $request, BookRepository $bookRepo)
     {
         $data = $request->all();
-        $bookRepo->create($data);
+        $book = $bookRepo->create($data);
+        event(new BookCreated($book));
         return redirect('books');
     }
 
@@ -56,10 +59,12 @@ class BookController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(BookRepository $bookRepo, $id)
+    public function show(OpenLibrary $ol, BookRepository $bookRepo, $id)
     {
         $book = $bookRepo->find($id);
-        return view('books/show', ['book' => $book]);
+        $openLibraryData = $ol->search($book->name);
+
+        return view('books/show', ['book' => $book, 'ol' => json_decode($openLibraryData)]);
     }
 
     /**
