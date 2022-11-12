@@ -24,8 +24,10 @@ Route::resource('books', BookController::class);
 
 Route::resource('loans', LoanController::class);
 
-Route::get('/authors', [AuthorController::class, 'index']);
+Route::resource('authors', AuthorController::class);
 
-Route::get('/authors/create', [AuthorController::class, 'create']);
+Route::get('language/{locale}', function ($locale) {
+    session(['locale' => $locale]);
+    return redirect()->action([BookController::class, 'index']);
+});
 
-Route::post('/authors', [AuthorController::class, 'store']);

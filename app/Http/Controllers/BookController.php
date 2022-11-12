@@ -8,6 +8,7 @@ use App\Models\Book;
 use App\Models\Isbn;
 use App\Repositories\BookRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Psy\Util\Str;
 
@@ -31,6 +32,7 @@ class BookController extends Controller
      */
     public function create()
     {
+        App::setLocale(session('locale'));
         $authors = Author::all();
         return view('books/create', ['authors' => $authors]);
     }
