@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreBook;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Isbn;
 use App\Repositories\BookRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Psy\Util\Str;
 
 class BookController extends Controller
 {
@@ -39,7 +41,7 @@ class BookController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, BookRepository $bookRepo)
+    public function store(StoreBook $request, BookRepository $bookRepo)
     {
         $data = $request->all();
         $bookRepo->create($data);
